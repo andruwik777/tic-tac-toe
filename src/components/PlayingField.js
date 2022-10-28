@@ -3,41 +3,29 @@ import React from 'react'
 import classes from './PlayingField.module.css'
 
 const PlayingField = () => {
-    // const gridItems = () => {
-    //     const numbers = Array(9).keys();
-    //     const arrayOfNumbers = [...numbers];
-    //     let a = arrayOfNumbers.map(n => <div className={classes['grid-item']}>{n}</div>);
-    //     return a;
-    // }
-    //
-    // const getColumns = (row) => {
-    //     return row.map(el => {
-    //         console.log('creating columns from ' + row );
-    //         return <td>{el}</td>;
-    //     })
-    // }
-    //
-    // const arr1 = [[0, 1, 2], [3, 4, 5], [6, 7, 8]];
-    //
-    // const tableItems = (arr) => {
-    //     return arr.map(row => {
-    //         console.log('processing ' + [...row]);
-    //         return
-    //         <tr>
-    //             {getColumns([...row])}
-    //         </tr>
-    //         ;});
-    // };
+    const arr1 = [[0, 1, 2], [3, 4, 5], [6, 7, 8]];
 
     return <React.Fragment>
         <div>
-            {console.log('here body')}
-            {/*<table>*/}
-            {/*    <tbody>*/}
-            {/*        /!*{tableItems(arr1)}*!/*/}
-            {/*        {console.log('here body')}*/}
-            {/*    </tbody>*/}
-            {/*</table>*/}
+            <table className={classes.table}>
+                <tbody>
+                    <tr id={0}>
+                        <td  id={0}>0</td>
+                        <td  id={1}>1</td>
+                        <td  id={2}>2</td>
+                    </tr>
+                    <tr id={1}>
+                        <td  id={0}>0</td>
+                        <td  id={1}>1</td>
+                        <td  id={2}>2</td>
+                    </tr>
+                    <tr id={2}>
+                        <td  id={0}>0</td>
+                        <td  id={1}>1</td>
+                        <td  id={2}>2</td>
+                    </tr>
+                </tbody>
+            </table>
 
             {/*{gridItems()}*/}
 
