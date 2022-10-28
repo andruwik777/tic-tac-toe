@@ -7,7 +7,7 @@ function App() {
 
     return (
         <React.Fragment>
-            <div>Hello world!</div>
+            {/*<div>Hello world!</div>*/}
             {<PlayingField/>}
         </React.Fragment>
     );

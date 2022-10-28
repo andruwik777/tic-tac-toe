@@ -9,8 +9,20 @@ const Cell = (props) => {
         props.onCellClicked(props.row, props.col);
     }
 
+    let background;
+    switch(props.value) {
+        case 'WIN':
+            background = {backgroundColor : "green"}
+            break;
+        case 'Try more...':
+            background = {backgroundColor : "red"};
+            break;
+        default:
+            background = {}
+    }
+
     return <Fragment>
-        <td className={classes.cell} id={id} onClick={clickHandler}>{props.value}</td>
+        <td className={classes.cell} id={id} onClick={clickHandler} style={background} >{props.value}</td>
     </Fragment>;
 }
 
