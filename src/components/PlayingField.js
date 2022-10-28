@@ -1,28 +1,48 @@
-import React from 'react'
+import React, {useState} from 'react'
+
+import Cell from './Cell'
 
 import classes from './PlayingField.module.css'
 
 const PlayingField = () => {
-    const arr1 = [[0, 1, 2], [3, 4, 5], [6, 7, 8]];
+
+    // const cellsState = [[0, 1, 2], [3, 4, 5], [6, 7, 8]];
+    const [cellsState, setCellState] = useState([Array(3), Array(3), Array(3)]);
+
+    // cellsState[2][1] = "Olala";
+    // cellsState[1][1] = "Hehe this is 11";
+
+
+
+
+    const cellClickedHandler = (row, col) => {
+        console.log('cell [' + row + ',' + col +  '] is clicked');
+
+        setCellState(prevState => {
+            const newState = prevState.slice();
+            newState[row][col] = "" + row + col;
+            return newState;
+        });
+    }
 
     return <React.Fragment>
         <div>
-            <table className={classes.table}>
+            <table>
                 <tbody>
-                    <tr id={0}>
-                        <td  id={0}>0</td>
-                        <td  id={1}>1</td>
-                        <td  id={2}>2</td>
+                    <tr>
+                        <Cell row={0} col={0} value={cellsState[0][0]} onCellClicked={cellClickedHandler}/>
+                        <Cell row={0} col={1} value={cellsState[0][1]} onCellClicked={cellClickedHandler}/>
+                        <Cell row={0} col={2} value={cellsState[0][2]}  onCellClicked={cellClickedHandler}/>
                     </tr>
-                    <tr id={1}>
-                        <td  id={0}>0</td>
-                        <td  id={1}>1</td>
-                        <td  id={2}>2</td>
+                    <tr>
+                        <Cell row={1} col={0} value={cellsState[1][0]}  onCellClicked={cellClickedHandler}/>
+                        <Cell row={1} col={1} value={cellsState[1][1]} onCellClicked={cellClickedHandler}/>
+                        <Cell row={1} col={2} value={cellsState[1][2]} onCellClicked={cellClickedHandler}/>
                     </tr>
-                    <tr id={2}>
-                        <td  id={0}>0</td>
-                        <td  id={1}>1</td>
-                        <td  id={2}>2</td>
+                    <tr>
+                        <Cell row={2} col={0} value={cellsState[2][0]} onCellClicked={cellClickedHandler}/>
+                        <Cell row={2} col={1} value={cellsState[2][1]} onCellClicked={cellClickedHandler}/>
+                        <Cell row={2} col={2} value={cellsState[2][2]} onCellClicked={cellClickedHandler}/>
                     </tr>
                 </tbody>
             </table>
