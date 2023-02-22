@@ -11,11 +11,11 @@ const Cell = (props) => {
 
     let background;
     switch(props.value) {
-        case 'WIN':
-            background = {backgroundColor : "green"}
+        case 'MISHA WIN':
+            background = {backgroundColor : "lightgreen"}
             break;
         case 'Try more...':
-            background = {backgroundColor : "red"};
+            background = {backgroundColor : "lightpink"};
             break;
         default:
             background = {}

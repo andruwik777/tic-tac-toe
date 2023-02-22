@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 
 import Cell from './Cell'
 
@@ -6,26 +6,60 @@ import classes from './PlayingField.module.css'
 
 const PlayingField = () => {
 
-    const WIN = "WIN";
+    const WIN = "MISHA WIN";
 
     // const cellsState = [[0, 1, 2], [3, 4, 5], [6, 7, 8]];
-    const [cellsState, setCellState] = useState([Array(3), Array(3), Array(3)]);
+    const initialCellsState = [Array(3), Array(3), Array(3)];
+    const [cellsState, setCellState] = useState(initialCellsState);
     const [winCell, setWinCell] = useState();
 
     // cellsState[2][1] = "Olala";
     // cellsState[1][1] = "Hehe this is 11";
 
 
-    useEffect(() => {
-        console.log("Use effect is fired!");
+    function setNewWinCell() {
         const winRow = getRandomInt(3);
         const winCol = getRandomInt(3);
 
         setWinCell("" + winRow + winCol);
+    }
+
+    const count = 10000000;
+
+    function getPercentage(a) {
+        return (a / (count / 100)).toFixed(2);
+    }
+
+    const checkRndFunction = () => {
+        let a = 0;
+        let b = 0;
+        let c = 0;
+
+        for (let i = 0; i < count; i++) {
+
+            const randomInt = getRandomInt(3);
+            if (randomInt === 0) {
+                ++a;
+            } else if (randomInt === 1) {
+                ++b;
+            } else {
+                ++c;
+            }
+        }
+
+        console.log('a:' + getPercentage(a) + '    b:' + getPercentage(b) + '    c' + getPercentage(c));
+    }
+
+    useEffect(() => {
+        console.log("Use effect is fired!");
+
+        // checkRndFunction();
+
+        setNewWinCell();
     }, [])
 
     const cellClickedHandler = (row, col) => {
-        console.log('cell [' + row + ',' + col +  '] is clicked');
+        console.log('cell [' + row + ',' + col + '] is clicked');
 
         setCellState(prevState => {
             const text = "" + row + col == winCell ? WIN : "Try more...";
@@ -36,13 +70,19 @@ const PlayingField = () => {
         });
     }
 
+    const startNewGameHandler = () => {
+        setCellState(initialCellsState);
+        setNewWinCell();
+    }
+
     function getRandomInt(max) {
         return Math.floor(Math.random() * max);
     }
 
     return <React.Fragment>
-        <div>
+        <div className={classes.playingField}>
             <h1>Try to guess WIN cell :)</h1>
+            <button className={classes.button} onClick={startNewGameHandler}>Start new game</button>
             <table>
                 <tbody>
                     <tr>
@@ -51,7 +91,7 @@ const PlayingField = () => {
                         <Cell row={0} col={2} value={cellsState[0][2]} onCellClicked={cellClickedHandler}/>
                     </tr>
                     <tr>
-                        <Cell row={1} col={0} value={cellsState[1][0]}  onCellClicked={cellClickedHandler}/>
+                        <Cell row={1} col={0} value={cellsState[1][0]} onCellClicked={cellClickedHandler}/>
                         <Cell row={1} col={1} value={cellsState[1][1]} onCellClicked={cellClickedHandler}/>
                         <Cell row={1} col={2} value={cellsState[1][2]} onCellClicked={cellClickedHandler}/>
                     </tr>

@@ -2,13 +2,14 @@ import React from 'react'
 
 import './App.css';
 import PlayingField from "./components/PlayingField";
+import NamePromptModal from "./components/NamePromptModal"
 
 function App() {
 
     return (
         <React.Fragment>
-            {/*<div>Hello world!</div>*/}
-            {<PlayingField/>}
+            <NamePromptModal/>
+            <PlayingField/>
         </React.Fragment>
     );
 }
