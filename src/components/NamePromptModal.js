@@ -13,9 +13,14 @@ const NamePromptModal = () => {
     }
 
     return <React.Fragment>
-        <label htmlFor="my-name">My Name:</label>
-        <input name="name" id="my-name" ref={nameRef} type="text" />
-        <button name="ok_button" id="ok" onClick={setNameHandler}>OK</button>
+        <div className={classes.backdrop}/>
+        <div className={classes.name_prompt_modal}>
+            <label htmlFor="my-name">My Name:</label>
+            <input name="name" id="my-name" ref={nameRef} type="text"/>
+            <button name="ok_button" id="ok" onClick={setNameHandler}>OK</button>
+
+        </div>
+
     </React.Fragment>
 }
 
