@@ -24,15 +24,17 @@ const Chat = () => {
         <React.Fragment>
             <h3>Live chat</h3>
 
-            {context.chatMessages.map((message) => {
-                const colored = message.playerId === context.playerId ? {color: "green"} : {color: "blue"};
-                return (
-                    <div key={message.id}>
-                        <span style={colored}>{message.playerName}:</span>
-                        <span>{message.chatMessageText}</span>
-                    </div>
-                );
-            })}
+            <ul>
+                {context.chatMessages.map((message) => {
+                    const colored = message.playerId === context.playerId ? {color: "green"} : {color: "blue"};
+                    return (
+                        <li key={message.id}>
+                            <span style={colored}>{message.playerName}:</span>
+                            <span>{message.chatMessageText}</span>
+                        </li>
+                    );
+                })}
+            </ul>
 
             {/*<label htmlFor="chat">Chat</label>*/}
             <input name="chat" id="chat" ref={chatMessageRef} type="text"/>
