@@ -2,22 +2,38 @@ import {createContext, useState} from 'react';
 
 const GameContext = createContext({
     playerName: "",
-    setPlayerName: {}
+    setPlayerName: {},
+    chatMessages: [],
+    addNewChatMessage: {}
 });
 
 export function GameContextProvider(props) {
     // TODO: default name for development process only
-    const [playerName, setPlayerName1] = useState("Andrii");
+    const [playerName, setPlayerName] = useState("Andrii");
+    const [chatMessages, setChatMessages] = useState([]);
 
     const setPlayerNameHandler = (newPlayerName) => {
-        setPlayerName1((prev) => {
+        setPlayerName((prev) => {
             return newPlayerName;
+        })
+    }
+
+    const addNewChatMessageHandler = (message) => {
+        setChatMessages((prev) => {
+            // allow only last fresh messages to be in the chat
+            const updatedListOfMessages = [message, ...prev];
+            if(updatedListOfMessages.length > 5) {
+                updatedListOfMessages.splice(5,1);
+            }
+            return updatedListOfMessages;
         })
     }
 
     const context = {
         playerName: playerName,
-        setPlayerName: setPlayerNameHandler
+        setPlayerName: setPlayerNameHandler,
+        chatMessages: chatMessages,
+        addNewChatMessage: addNewChatMessageHandler
     }
 
     return <GameContext.Provider value={context}>
