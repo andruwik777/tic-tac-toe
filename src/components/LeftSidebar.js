@@ -10,10 +10,18 @@ const LeftSidebar = () => {
     console.log("From App.js: " + context.playerName);
 
     return (
-        <React.Fragment>
+        <div className={classes.sidenav}>
             {context.playerName === "" && <NamePromptModal/>}
             <div>Player: {context.playerName}</div>
-        </React.Fragment>
+            <div>Player: {context.playerName}</div>
+            <div>Player: {context.playerName}</div>
+            <div>Player: {context.playerName}</div>
+            <div>Player: {context.playerName}</div>
+            <div>Player: {context.playerName}</div>
+            <div>Player: {context.playerName}</div>
+            <div>Player: {context.playerName}</div>
+
+        </div>
     );
 }
 
