@@ -1,9 +1,10 @@
 import React, {useContext} from 'react';
 
 import classes from './LeftSidebar.module.css'
-import NamePromptModal from './NamePromptModal'
 import GameContext from '../store/game-context'
 import Chat from "./Chat";
+import Players from "./Players";
+import PlayerName from "./PlayerName";
 
 const LeftSidebar = () => {
     const context = useContext(GameContext);
@@ -12,8 +13,8 @@ const LeftSidebar = () => {
 
     return (
         <div className={classes.sidenav}>
-            {context.playerName === "" && <NamePromptModal/>}
-            <h2 className={classes.name}>Your name: {context.playerName}</h2>
+            <PlayerName/>
+            <Players/>
             <Chat/>
         </div>
     );

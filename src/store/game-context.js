@@ -86,6 +86,7 @@ export function GameContextProvider(props) {
         playerName: playerName,
         playerId: playerId,
         setPlayerName: setPlayerNameHandler,
+        getPlayers: allPlayers,
         chatMessages: chatMessages,
         addNewChatMessage: addNewChatMessageHandler,
         connectedToServer: connectedToServer

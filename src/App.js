@@ -7,7 +7,6 @@ import LeftSidebar from "./components/LeftSidebar";
 function App() {
     return (
         <React.Fragment>
-
             <LeftSidebar/>
             <PlayingField/>
         </React.Fragment>
