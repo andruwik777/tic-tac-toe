@@ -13,7 +13,7 @@ const LeftSidebar = () => {
     return (
         <div className={classes.sidenav}>
             {context.playerName === "" && <NamePromptModal/>}
-            <div>Player: {context.playerName}</div>
+            <h2 className={classes.name}>Your name: {context.playerName}</h2>
             <Chat/>
         </div>
     );

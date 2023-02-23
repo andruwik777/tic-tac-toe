@@ -14,7 +14,7 @@ const Chat = () => {
             context.addNewChatMessage(message);
         }
 
-        if(message.trim() !== "") {
+        if (message.trim() !== "") {
             sendToServer(message);
             chatMessageRef.current.value = "";
         }
@@ -22,11 +22,17 @@ const Chat = () => {
 
     return (
         <React.Fragment>
-            <h2>Live chat</h2>
+            <h3>Live chat</h3>
 
-            {context.chatMessages.map((message) => (
-                <div>{message}</div>
-            ))}
+            {context.chatMessages.map((message) => {
+                const colored = message.playerId === context.playerId ? {color: "green"} : {color: "blue"};
+                return (
+                    <div key={message.id}>
+                        <span style={colored}>{message.playerName}:</span>
+                        <span>{message.chatMessageText}</span>
+                    </div>
+                );
+            })}
 
             {/*<label htmlFor="chat">Chat</label>*/}
             <input name="chat" id="chat" ref={chatMessageRef} type="text"/>
