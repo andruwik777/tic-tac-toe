@@ -6,7 +6,8 @@ const GameContext = createContext({
 });
 
 export function GameContextProvider(props) {
-    const [playerName, setPlayerName1] = useState("");
+    // TODO: default name for development process only
+    const [playerName, setPlayerName1] = useState("Andrii");
 
     const setPlayerNameHandler = (newPlayerName) => {
         setPlayerName1((prev) => {
