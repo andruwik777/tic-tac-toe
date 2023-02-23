@@ -1,13 +1,15 @@
-import React, {useRef} from 'react'
+import React, {useContext, useRef} from 'react'
+import GameContext from "../store/game-context";
 
 import classes from './NamePromptModal.module.css'
 
 const NamePromptModal = () => {
-
+    const context = useContext(GameContext);
     const nameRef = useRef();
 
-    let setNameHandler = () => {
+    const setNameHandler = () => {
         console.log("name is set to:" + nameRef.current.value);
+        context.setPlayerName(nameRef.current.value);
     }
 
     return <React.Fragment>
