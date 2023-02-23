@@ -8,8 +8,10 @@ const NamePromptModal = () => {
     const nameRef = useRef();
 
     const setNameHandler = () => {
-        console.log("name is set to:" + nameRef.current.value);
-        context.setPlayerName(nameRef.current.value);
+        const playerName = nameRef.current.value.trim();
+        if(playerName !== "") {
+            context.setPlayerName(playerName);
+        }
     }
 
     return <React.Fragment>
