@@ -1,11 +1,12 @@
 import {createContext, useEffect, useRef, useState} from 'react';
 
+const MAX_COUNT_OF_CHAT_MESSAGES = 5;
 // IN/OUT related to the server side logic
 const ACTION_OUT_PLAYERS_UPDATED = "ACTION_OUT_PLAYERS_UPDATED";
 const ACTION_IN_SET_NAME = "ACTION_IN_SET_NAME";
 const ACTION_IN_NEW_CHAT_MESSAGE = "ACTION_IN_NEW_CHAT_MESSAGE";
 const ACTION_OUT_NEW_CHAT_MESSAGE = "ACTION_OUT_NEW_CHAT_MESSAGE";
-const ACTION_OUT_SET_PLAYER_ID = "ACTION_OUT_SET_PLAYER_ID";
+const ACTION_OUT_SET_INITIAL_INFO = "ACTION_OUT_SET_INITIAL_INFO";
 
 
 const GameContext = createContext({
@@ -40,9 +41,12 @@ export function GameContextProvider(props) {
         socket.onmessage = (event) => {
             const data = JSON.parse(event.data);
             switch(data.action) {
-                case ACTION_OUT_SET_PLAYER_ID:
-                    const playerId = data.data;
+                case ACTION_OUT_SET_INITIAL_INFO:
+                    const playerId = data.data.id;
+                    const playerName = data.data.name;
                     setplayerId(playerId);
+                    setPlayerName(playerName);
+                    setChatMessages(data.data.messages);
                     break;
                 case ACTION_OUT_PLAYERS_UPDATED:
                     const players = data.data;
@@ -54,8 +58,8 @@ export function GameContextProvider(props) {
                     setChatMessages((prev) => {
                         // allow only last fresh messages to be in the chat
                         const updatedListOfMessages = [newMessage, ...prev];
-                        if(updatedListOfMessages.length > 5) {
-                            updatedListOfMessages.splice(5,1);
+                        if(updatedListOfMessages.length > MAX_COUNT_OF_CHAT_MESSAGES) {
+                            updatedListOfMessages.splice(MAX_COUNT_OF_CHAT_MESSAGES,1);
                         }
                         return updatedListOfMessages;
                     });

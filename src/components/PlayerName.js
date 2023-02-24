@@ -7,7 +7,7 @@ const PlayerName = () => {
     const context = useContext(GameContext);
     return (
         <React.Fragment>
-            {context.playerName === "" && <NamePromptModal/>}
+            {/*{context.playerName === "" && <NamePromptModal/>}*/}
             <h2 className={classes.name}>Your name: {context.playerName}</h2>
         </React.Fragment>
     );
